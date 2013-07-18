@@ -1,0 +1,20 @@
+@(user : Form[User], existing : List[User])
+
+
+@import helper._
+
+
+@main("Welcome to Play 2.1") {
+    
+    ciao
+     @form(routes.Application.submitUsername(), 'id -> "userform") {
+      @inputText(user("username"), 'id -> "username")
+     
+      <input type="submit" value="Submit"/>
+    }
+    
+   	@for(user <- existing) {
+   		<h1>Hello @user.username</h1>
+   	}
+    
+}
