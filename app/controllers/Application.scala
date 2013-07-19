@@ -6,6 +6,10 @@ import play.api.templates.Html
 import play.api.data.Form
 import play.api.data.Forms._
 import models.User
+import play.api.libs.ws.WS
+import scala.concurrent.ExecutionContext._
+import play.api.libs.concurrent.Execution.Implicits._
+import play.api.libs.json.JsValue
 
 object Application extends Controller {
   var users: List[User] = Nil
@@ -25,15 +29,21 @@ object Application extends Controller {
   def submitUsername = Action { implicit req =>
     val form = userform.bindFromRequest()
     if (users == Nil) {
-      println("creating list as it was null")
       users = List(form.get)
     }
     else {
       users = form.get :: users
       //users ++= List(form.get)
   	}
-    println("Added user: "+form.get.username+" to list "+users)
     Redirect(routes.Application.index())
+  }
+  
+  def lookupCompany = Action { 
+    Async {
+	    WS.url("http://maps.googleapis.com/maps/api/geocode/json?address=Goodge+Street&sensor=false").get()
+	    	.map {response =>  Ok((response.json \ "results" \ "address_components").as[JsValue]) }
+    }
+  
   }
 
 }
