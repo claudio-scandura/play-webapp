@@ -1,4 +1,4 @@
-@(user : Form[User], existing : List[User])
+@(userComment : Form[UserComment], existing : Seq[UserComment])
 
 
 @import helper._
@@ -6,15 +6,20 @@
 
 @main("Welcome to Play 2.1") {
     
-    
-     @form(routes.Application.submitUsername(), 'id -> "userform") {
-      @inputText(user("username"), 'id -> "username")
+     @form(routes.Application.submitComment(), 'id -> "userform") {
+      @inputText(userComment("username"), 'id -> "username")
+      @textarea(userComment("comment"), 'id -> "comment")
      
-      <input type="submit" value="Submit"/>
+      <input type="submit" value="Post Submit"/>
     }
+      <Button id="postCommentButton">Ajax submit</Button>
     
-   	@for(user <- existing) {
-   		<h1>Hello @user.username</h1>
-   	}
-    
+    <div>
+      <ul id="comments">
+	    <li>Coffee</li>
+	  </ul>
+<!-- 	   	@for(usercomment <- existing) { -->
+<!-- 	   		<h1>@usercomment.username commented: @usercomment.comment</h1> -->
+<!-- 	   	} -->
+    </div>
 }

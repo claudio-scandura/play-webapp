@@ -5,7 +5,9 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /lookup                     controllers.Application.lookupCompany
-POST    /addUser	       			controllers.Application.submitUsername
+POST    /addUser	       			controllers.Application.submitComment
+POST    /addUserAjax	    		controllers.Application.submitCommentAjax
+GET    /allComments	    			controllers.Application.allComments
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
