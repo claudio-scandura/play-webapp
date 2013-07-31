@@ -40,5 +40,6 @@ class UserCommentTest {
     assertEquals("Maccio", result.username)
     assertEquals("Whatever", result.comment)
   }
+  
 
 }

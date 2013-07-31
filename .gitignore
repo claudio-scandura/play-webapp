@@ -1,7 +1,9 @@
 logs
 project/project
 project/target
-target
+target/
+/.cache
+.target/
 tmp
 .history
 dist

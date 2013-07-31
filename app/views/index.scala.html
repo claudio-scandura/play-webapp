@@ -5,21 +5,19 @@
 
 
 @main("Welcome to Play 2.1") {
-    
+    <div id="formDiv" class="form-box">
      @form(routes.Application.submitComment(), 'id -> "userform") {
       @inputText(userComment("username"), 'id -> "username")
       @textarea(userComment("comment"), 'id -> "comment")
      
-      <input type="submit" value="Post Submit"/>
+      <input type="submit" class="button" value="Post Submit"/>
     }
-      <Button id="postCommentButton">Ajax submit</Button>
+      <Button id="postCommentButton" class="button">Ajax submit</Button>
+    </div>
     
-    <div>
-      <ul id="comments">
-	    <li>Coffee</li>
-	  </ul>
-<!-- 	   	@for(usercomment <- existing) { -->
-<!-- 	   		<h1>@usercomment.username commented: @usercomment.comment</h1> -->
-<!-- 	   	} -->
+    
+    <div class="container">
+     <ul id="comments">
+	 </ul>
     </div>
 }
